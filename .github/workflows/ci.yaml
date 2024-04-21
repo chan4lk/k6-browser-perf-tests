@@ -6,8 +6,10 @@ jobs:
   performance-tests:
     runs-on: ubuntu-latest
     env:
-      K6_BROWSER_HEADLESS: true
+      K6_BROWSER_HEADLESS: false
+      K6_BROWSER_ENABLED: true
       K6_BROWSER_ARGS: 'no-sandbox'
+      K6_BROWSER_EXECUTABLE_PATH: /usr/bin/google-chrome
       
     steps:
       - name: Checkout Code
@@ -36,10 +38,6 @@ jobs:
 
       - name: Run k6 foundations tests
         run: k6 run --no-thresholds stages.js
-        env:
-          K6_BROWSER_HEADLESS: true
-          K6_BROWSER_ARGS: 'no-sandbox'
-          K6_BROWSER_EXECUTABLE_PATH: /usr/bin/google-chrome
 
       - name: Upload Report
         uses: actions/upload-artifact@v3
@@ -49,10 +47,6 @@ jobs:
 
       - name: Run k6 base tests
         run: k6 run --no-thresholds base.js
-        env:
-          K6_BROWSER_HEADLESS: true
-          K6_BROWSER_ARGS: 'no-sandbox'
-          K6_BROWSER_EXECUTABLE_PATH: /usr/bin/google-chrome
 
       - name: Upload Report
         uses: actions/upload-artifact@v3
