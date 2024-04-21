@@ -18,7 +18,7 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - run: |
-        ${{ steps.setup-chrome.outputs.chrome-path }} --version
+          ${{ steps.setup-chrome.outputs.chrome-path }} --version
 
       - name: Run browser k6 test
         uses: grafana/k6-action@v0.3.0
