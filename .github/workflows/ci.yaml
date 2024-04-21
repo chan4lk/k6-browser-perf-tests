@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       K6_BROWSER_ENABLED: true  
+      K6_BROWSER_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
       
     steps:
       - name: Checkout Code
@@ -15,7 +16,10 @@ jobs:
       - name: Install chrome
         id: setup-chrome
         uses: browser-actions/setup-chrome@v1
-    
+
+      - run: |
+        ${{ steps.setup-chrome.outputs.chrome-path }} --version
+
       - name: Run browser k6 test
         uses: grafana/k6-action@v0.3.0
         env:
