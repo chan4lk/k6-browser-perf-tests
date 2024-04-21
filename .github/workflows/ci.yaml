@@ -6,7 +6,7 @@ jobs:
   performance-tests:
     runs-on: ubuntu-latest
     env:
-      K6_BROWSER_ENABLED: true
+      K6_BROWSER_HEADLESS: true
       
     steps:
       - name: Checkout Code
@@ -18,6 +18,7 @@ jobs:
 
       - run: |
           ${{ steps.setup-chrome.outputs.chrome-path }} --version
+          /usr/bin/google-chrome --version
           export K6_BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome
 
       - name: Run browser k6 test
