@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+
+      - name: Install chrome
+        uses: browser-actions/setup-chrome@v1
     
       - name: Run browser k6 test
         uses: grafana/k6-action@v0.3.0
