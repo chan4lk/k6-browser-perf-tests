@@ -18,12 +18,12 @@ jobs:
 
       - run: |
           ${{ steps.setup-chrome.outputs.chrome-path }} --version
-          export K6_BROWSER_EXECUTABLE_PATH=${{ steps.setup-chrome.outputs.chrome-path }}
+          export K6_BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome
 
       - name: Run browser k6 test
         uses: grafana/k6-action@v0.3.0
         env:
-           K6_BROWSER_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
+           K6_BROWSER_EXECUTABLE_PATH: /usr/bin/google-chrome
         with:
          filename: stages.js
 
@@ -36,7 +36,7 @@ jobs:
       - name: Run k6 test on Lambda Test
         uses: grafana/k6-action@v0.3.0
         env:
-           K6_BROWSER_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
+           K6_BROWSER_EXECUTABLE_PATH: /usr/bin/google-chrome
         with:
          filename: base.js
 
