@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       K6_BROWSER_HEADLESS: true
+      K6_BROWSER_ARGS: 'no-sandbox'
       
     steps:
       - name: Checkout Code
@@ -20,6 +21,8 @@ jobs:
           ${{ steps.setup-chrome.outputs.chrome-path }} --version
           /usr/bin/google-chrome --version
           export K6_BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome
+          export K6_BROWSER_HEADLESS=true 
+          export K6_BROWSER_ARGS='no-sandbox'
 
       - name: Run browser k6 test
         uses: grafana/k6-action@v0.3.0
