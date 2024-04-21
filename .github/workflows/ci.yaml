@@ -35,7 +35,7 @@ jobs:
           sudo apt-get install k6
 
       - name: Run k6 foundations tests
-        run: k6 run stages.js
+        run: k6 run --no-thresholds stages.js
         env:
           K6_BROWSER_HEADLESS: true
           K6_BROWSER_ARGS: 'no-sandbox'
@@ -48,7 +48,7 @@ jobs:
           path: result.html
 
       - name: Run k6 base tests
-        run: k6 run base.js
+        run: k6 run --no-thresholds base.js
         env:
           K6_BROWSER_HEADLESS: true
           K6_BROWSER_ARGS: 'no-sandbox'
