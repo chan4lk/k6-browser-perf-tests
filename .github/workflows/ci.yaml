@@ -13,10 +13,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install chrome
+        id: setup-chrome
         uses: browser-actions/setup-chrome@v1
     
       - name: Run browser k6 test
         uses: grafana/k6-action@v0.3.0
+        env:
+           K6_BROWSER_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         with:
          filename: stages.js
 
@@ -28,6 +31,8 @@ jobs:
 
       - name: Run k6 test on Lambda Test
         uses: grafana/k6-action@v0.3.0
+        env:
+           K6_BROWSER_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         with:
          filename: base.js
 
